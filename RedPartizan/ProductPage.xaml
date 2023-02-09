@@ -1,0 +1,121 @@
+﻿<Page x:Class="CompuMarket_App.ProductPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CompuMarket_App"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="Страница товаров" IsVisibleChanged="Page_IsVisibleChanged">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition x:Name="RegularRowSize" Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Border BorderBrush="Black" BorderThickness="1" Background="White"/>
+        <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0" >
+            <StackPanel Orientation="Horizontal" Height="64" >
+                <TextBlock Text="Введите название : " Margin="10 0 0 0" FontSize="20"/>
+                <TextBox Width="130" Height="36"  FontSize="14" Padding="5"
+                         TextChanged="TBoxSearch_TextChanged"  Name="TBoxSearch"
+                         VerticalContentAlignment="Center" VerticalAlignment="Center"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                <TextBlock Text="Выберите тип : " FontSize="20" Margin="10 0 0 0" />
+                <ComboBox Width="160" Name="ComboType" FontSize="14"
+                          VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                          SelectionChanged="ComboType_SelectionChanged" Padding="5"
+                          Height="36" DisplayMemberPath="name"
+                          Style="{StaticResource MaterialDesignOutlinedComboBox}"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" IsEnabled="True" Height="64" >
+                <CheckBox x:Name="CheckActive" Checked="CheckActive_Checked"
+                          Unchecked="CheckActive_Checked" FontSize="20"
+                          Content="Только актуальные товары" HorizontalAlignment="Center"
+                          VerticalAlignment="Center" Margin="10 0 0 0" 
+                          Style="{StaticResource MaterialDesignUserForegroundCheckBox}"/>
+                <TextBlock Margin="10 0 0 0" Text="Сортирвка : " FontSize="20"
+                           VerticalAlignment="Center"/>
+                <ComboBox  Style="{StaticResource MaterialDesignOutlinedComboBox}"
+                           Height="36"  Padding="5" FontSize="14" x:Name="ComboFilter"
+                           VerticalContentAlignment="Center" HorizontalContentAlignment="Left"
+                           SelectionChanged="ComboFilter_SelectionChanged"  Width="180" >
+                    <ComboBoxItem >
+                        <TextBlock Text="-----------" />
+                    </ComboBoxItem>
+                    <ComboBoxItem >
+                        <TextBlock Text="По Возрастанию цены" />
+                    </ComboBoxItem>
+                    <ComboBoxItem >
+                        <TextBlock Text="По Убыванию цены" />
+                    </ComboBoxItem>
+                    <ComboBoxItem >
+                        <TextBlock Text="По Алфавиту" />
+                    </ComboBoxItem>
+                </ComboBox>
+            </StackPanel>
+        </WrapPanel>
+
+        <ListView Grid.Row="1" Name="LViewProduct" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                  HorizontalContentAlignment="Center" Margin="50 0" Grid.ColumnSpan="2" >
+            <ListView.ItemsPanel >
+                <ItemsPanelTemplate >
+                    <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel >
+            <ListView.ItemTemplate  >
+                <DataTemplate >
+                    <Grid  Background="White" HorizontalAlignment="Center" Margin="0"
+                           Height="460" x:Name="Grid123" MouseDown="Grid123_MouseDown">
+                        <Border BorderBrush="#007cc2" BorderThickness="3"  >
+                            <Border.Effect >
+                                <DropShadowEffect BlurRadius="15" Color="LightGray" ShadowDepth="0" />
+                            </Border.Effect>
+                            <StackPanel Background="White">
+                                <Grid Margin="0" Width="335" Background="White" HorizontalAlignment="Center">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="210"/>
+                                        <RowDefinition Height="100"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+                                        <RowDefinition Height="auto"/>
+
+                                    </Grid.RowDefinitions>
+                                    <Image Height="170"  Grid.Row="0" HorizontalAlignment="Center"
+                                           Margin="20"  Source="{Binding mainImagePath}"/>
+                                    <TextBlock x:Name="TextS"  Text="{Binding title}" 
+                                               TextAlignment="Center" Width="307" TextWrapping="Wrap"
+                                               HorizontalAlignment="Center" FontSize="24" Grid.Row="1"/>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding cost}"  Grid.Row="2"
+                                               Margin="5 5 5 15" HorizontalAlignment="Center" FontSize="24">
+                                        <Run Text=" руб" />
+                                    </TextBlock>
+                                    <TextBlock TextWrapping="Wrap" Foreground="Gray"
+                                               Text="{Binding isActualP}"  Grid.Row="4" Margin="15"
+                                               HorizontalAlignment="Right" FontSize="18"/>
+                                    <Button Background="White" Click="AddProdctR_Click"
+                                            Foreground="#007cc2" BorderBrush="#007cc2"
+                                            Content=" Подробнее " HorizontalAlignment="Center" Grid.Row="3"/>
+                                </Grid>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Grid Background="White"  Grid.Row="2" VerticalAlignment="Bottom" Height="50">
+            <Button Content="Добавить товар" HorizontalAlignment="Left" Margin="10 0" 
+                    BorderBrush="#007cc2" Foreground="#007cc2" 
+                    Style="{StaticResource MaterialDesignOutlinedButton}" Name="BtnAdd"
+                    Click="BtnAdd_Click"
+                    />
+            <Button Content="Удалить товар" HorizontalAlignment="Right" Margin="10 0"
+                    BorderBrush="Red" Foreground="Red" 
+                    Style="{StaticResource MaterialDesignOutlinedButton}" Name="BtnDelete"
+                    Click="BtnDelete_Click"/>
+        </Grid>
+    </Grid>
+</Page>
+

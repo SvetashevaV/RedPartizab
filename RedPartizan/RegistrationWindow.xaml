@@ -1,0 +1,43 @@
+﻿<Window x:Class="CompuMarket_App.RegistrationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CompuMarket_App"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Регистрация" Height="900" Width="750" ResizeMode="NoResize">
+    <Grid>
+        <Border BorderThickness="2" Width="604" Height="745" Margin="50" Background="white"
+                VerticalAlignment="Center" Padding="30" CornerRadius="20">
+            <Border.Effect >
+                <DropShadowEffect BlurRadius="30" Color="LightGray" ShadowDepth="0"/>
+            </Border.Effect>
+            <StackPanel >
+                <TextBlock Text="Регистрация!" HorizontalAlignment="Center" FontWeight="Bold" Margin="20" FontSize="24"/>
+                <TextBox FontSize="18" Margin="15" x:Name="loginBox" BorderThickness="0,0,0,1" 
+                         materialDesign:HintAssist.Hint="Введите логин" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <PasswordBox FontSize="18" Margin="15" x:Name="passBox" BorderThickness="0,0,0,1"
+                             materialDesign:HintAssist.Hint="Введите пароль"
+                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <PasswordBox FontSize="18" Margin="15"   x:Name="pass1Box" BorderThickness="0,0,0,1" 
+                             materialDesign:HintAssist.Hint="Подтвердите пароль"
+                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"/>
+                <TextBox FontSize="18" Margin="15" x:Name="FirstBox" BorderThickness="0,0,0,1"
+                         materialDesign:HintAssist.Hint="Введите имя"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox FontSize="18" Margin="15" x:Name="LastBox" BorderThickness="0,0,0,1"
+                         materialDesign:HintAssist.Hint="Введите фамилию"
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <TextBox FontSize="18"  Margin="15"  x:Name="emailBox" BorderThickness="0,0,0,1"
+                         materialDesign:HintAssist.Hint="Введите Email" 
+                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                <Button  FontSize="23" Width="300"  Margin="0 20" Height="56" Content="Зарегитрироваться"
+                         Style="{StaticResource MaterialDesignOutlinedDarkButton}" x:Name="RegBut" Click="RegBut_Click"/>
+                <Button   Width="200" BorderBrush="{x:Null}" Foreground="Black"
+                          Background="{x:Null}" Content="Войти!" FontSize="20" Click="Button_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

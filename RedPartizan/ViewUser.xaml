@@ -1,0 +1,104 @@
+﻿<Page x:Class="CompuMarket_App.ViewUser"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CompuMarket_App"
+      mc:Ignorable="d" 
+        d:DesignHeight="720" d:DesignWidth="1280"
+      Title="ViewUser">
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="0">
+            <Border BorderBrush="Black" BorderThickness="0 0 0 3" ></Border>
+            <TextBlock  Margin="10" Text="ПОЛЬЗОВАТЕЛИ :" FontWeight="Bold" 
+                        TextDecorations="Underline" FontSize="30" 
+                        HorizontalAlignment="Left"/>
+        </Grid>
+
+        <Border BorderBrush="Black" BorderThickness="1" Background="White" Grid.Row="1">
+            <WrapPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0" Grid.Row="2">
+                <StackPanel Orientation="Horizontal" Height="64" >
+                    <TextBlock Text="Код пользователя : " Margin="10 0 0 0" FontSize="20"/>
+                    <TextBox Width="130" Height="36"  FontSize="14" Padding="5"
+                         TextChanged="UserSearch_TextChanged"  Name="UserIdSearch"
+                         VerticalContentAlignment="Center" VerticalAlignment="Center"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+
+                    <TextBlock Text="Имя : " FontSize="20" Margin="10 0 0 0" />
+                    <TextBox Width="130" Height="36"  FontSize="14" Padding="5"
+                         TextChanged="FirstNameSearch_TextChanged"  Name="FirstNameSearch"
+                         VerticalContentAlignment="Center" VerticalAlignment="Center"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+
+                    <TextBlock Margin="10 0 0 0" Text="Фамилия : " FontSize="20"
+                           VerticalAlignment="Center"/>
+                    <TextBox Width="130" Height="36"  FontSize="14" Padding="5"
+                         TextChanged="LastNameSearch_TextChanged"  Name="LastNameSearch"
+                         VerticalContentAlignment="Center" VerticalAlignment="Center"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+
+                    <TextBlock Margin="10 0 0 0" Text="Email : " FontSize="20"
+                           VerticalAlignment="Center"/>
+                    <TextBox Width="130" Height="36"  FontSize="14" Padding="5"
+                         TextChanged="EmailSearch_TextChanged"  Name="EmailSearch"
+                         VerticalContentAlignment="Center" VerticalAlignment="Center"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                </StackPanel>
+            </WrapPanel>
+        </Border>
+
+        <ListView  Name="LViewUser" Grid.Row="3">
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <Grid  Background="White"  Height="300">
+                        <Border BorderBrush="#007cc2" BorderThickness="3"  >
+                            <Border.Effect >
+                                <DropShadowEffect BlurRadius="15" Color="LightGray" ShadowDepth="0" />
+                            </Border.Effect>
+                        </Border>
+                        <Grid Margin="25"  Background="White" >
+                            <Grid  Background="White" Height="250" Width="1170">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition  Width="250"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Text="Код пользователя - " FontSize="24"  TextAlignment="Right"/>
+                                <TextBlock Text="Имя - "  Grid.Row="1" FontSize="24"  TextAlignment="Right"/>
+                                <TextBlock Text="Фамилия - "  Grid.Row="2" FontSize="24"  TextAlignment="Right"/>
+                                <TextBlock Text="Email - "  Grid.Row="3" FontSize="24"  TextAlignment="Right"/>
+
+                                <TextBlock x:Name="TextOrder"  Text="{Binding id}" Grid.Column="2"   TextAlignment="Left"
+                                   TextWrapping="Wrap"  HorizontalAlignment="Left" FontSize="24" Grid.Row="0"/>
+                                <TextBlock x:Name="TextProduct"  Text="{Binding FirstName}" Grid.Column="2" Grid.Row="1"
+                                           TextAlignment="Left"
+                                   TextWrapping="Wrap"  HorizontalAlignment="Left" FontSize="24" />
+                                <TextBlock x:Name="TextUser"  Text="{Binding SecondName}" Grid.Column="2" Grid.Row="2" 
+                                           TextAlignment="Left"
+                                   TextWrapping="Wrap"  HorizontalAlignment="Left" FontSize="24" />
+                                <TextBlock x:Name="TextNumber"  Text="{Binding Email}" Grid.Column="2" TextAlignment="Left"
+                                   TextWrapping="Wrap"  HorizontalAlignment="Left"  FontSize="24" Grid.Row="3"/>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

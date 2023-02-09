@@ -1,0 +1,92 @@
+﻿<Page x:Class="CompuMarket_App.UserPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CompuMarket_App"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="Личный кабинет">
+
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Border BorderBrush="#007cc2" BorderThickness="3"  Background="White"/>
+            <StackPanel Margin="10"  HorizontalAlignment="Center" >
+                <TextBlock Text="ЛИЧНЫЙ КАБИНЕТ" FontWeight="Bold"  Foreground="Black" FontSize="30"
+                           TextDecorations="Underline" HorizontalAlignment="Center"/>
+                <StackPanel Margin="10"  Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <TextBlock FontSize="20">
+                 <Run FontWeight="Bold" Text="   Имя : "/>  <Run Text="{Binding FirstName}"  Name="lblTest"/>
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel Margin="10"  Orientation="Horizontal" HorizontalAlignment="Center" >
+                    <TextBlock FontSize="20" >
+                 <Run FontWeight="Bold" Text="   Фамилия : "/> <Run Text="{Binding SecondName}"  Name="lblLast" />
+                    </TextBlock>
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Border BorderBrush="Black" BorderThickness="0 0 0 3" >
+                <TextBlock  Margin="10" Text="ВАШИ ЗАКАЗЫ :" FontWeight="Bold" 
+                            TextDecorations="Underline" FontSize="30" 
+                            HorizontalAlignment="Left"/>
+            </Border>
+        </Grid>
+
+        <ListView  Name="LViewProduct" Grid.Row="2">
+            <ListView.ItemTemplate>
+                <DataTemplate >
+                    <Grid  Background="White"  Height="300" >
+                        <Border BorderBrush="#007cc2" BorderThickness="3"  >
+                            <Border.Effect >
+                                <DropShadowEffect BlurRadius="15" Color="LightGray" ShadowDepth="0" />
+                            </Border.Effect>
+                        </Border>
+                        <Grid Margin="30"  Background="White" >
+
+                            <StackPanel Background="White">
+                                <Grid  Background="White" Height="250" >
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="50"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="250" />
+                                        <ColumnDefinition  Width="250"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image x:Name="ImageP" Grid.RowSpan="4" Grid.Column="0" VerticalAlignment="Center"  Height="216"
+                                           Source="{Binding Product.mainImagePath}" />
+                                    <TextBlock Text="Код заказа - " Grid.Column="1" FontSize="24"  TextAlignment="Right"/>
+                                    <TextBlock Text="Название товара - " Grid.Column="1" Grid.Row="1" FontSize="24"  TextAlignment="Right"/>
+                                    <TextBlock Text="Номер телефона - " Grid.Column="1" Grid.Row="2" FontSize="24"  TextAlignment="Right"/>
+                                    <TextBlock Text="Адресс доставки - " Grid.Column="1" Grid.Row="3" FontSize="24"  TextAlignment="Right"/>
+                                    <TextBlock x:Name="TextId"  Text="{Binding id}" Grid.Column="2"   TextAlignment="Left"
+                                   TextWrapping="Wrap"  HorizontalAlignment="Left" FontSize="24" Grid.Row="0"/>
+                                    <TextBlock x:Name="TextProduct"  Text="{Binding Product.title}" Grid.Column="2" TextAlignment="Left"
+                                   TextWrapping="Wrap"  HorizontalAlignment="Left"  FontSize="24" Grid.Row="1"/>
+                                    <TextBlock x:Name="TextNumber"  Text="{Binding Number}" Grid.Column="2" TextAlignment="Left"
+                                   TextWrapping="Wrap"  HorizontalAlignment="Left"  FontSize="24" Grid.Row="2"/>
+                                    <TextBlock x:Name="TextAdress"  Text="{Binding AdressOrder}"   TextAlignment="left" 
+                                   TextWrapping="Wrap"  HorizontalAlignment="Left" FontSize="24" Grid.Row="3" Grid.Column="2" />
+                                </Grid>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

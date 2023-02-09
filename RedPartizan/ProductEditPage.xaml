@@ -1,0 +1,93 @@
+﻿<Page x:Class="CompuMarket_App.ProductEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CompuMarket_App"
+      mc:Ignorable="d" 
+     d:DesignHeight="720" d:DesignWidth="1280"
+      Title="ProductEditPage">
+
+    <Grid Margin="0" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid  Margin="0 20 0 0" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"></ColumnDefinition>
+                <ColumnDefinition Width="650"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border BorderBrush="#007cc2" BorderThickness="3" Background="White" 
+                    VerticalAlignment="Top" HorizontalAlignment="Left" Width="1050"
+                    Height="500" Grid.ColumnSpan="2" />
+            <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"
+                       Height="300" Width="300" Margin="50" Grid.Column="0">
+                <Image  MaxHeight="260" MaxWidth="260" Source="{Binding mainImagePath}" />
+            </WrapPanel>
+            <WrapPanel Orientation="Vertical" HorizontalAlignment="Left" VerticalAlignment="Top"
+                       Height="500" Width="650"  Grid.Column="1">
+
+                <StackPanel Orientation="Horizontal" Height="60" Width="650" Margin="0 0 0 10">
+                    <TextBlock Text="Код Товара - "  FontSize="20" Margin="86 0 0 0" />
+                    <TextBox Text="{Binding id}"  IsEnabled="False" VerticalAlignment="Center"
+                             IsReadOnly="True" MinWidth="50"  Height="48" TextWrapping="Wrap" 
+                             HorizontalContentAlignment="Center"  x:Name="titleId" FontSize="14"
+                             VerticalContentAlignment="Center" Padding="5" 
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Height="60"  Width="650" Margin="0 0 0 10">
+                    <TextBlock Text="Название товара - " Margin="36 0 0 0"  FontSize="20"/>
+                    <TextBox Text="{Binding title}" VerticalContentAlignment="Center" Padding="5"
+                             MinWidth="110" MaxWidth="300" TextWrapping="Wrap" x:Name="titleBox"
+                             FontSize="14" VerticalAlignment="Center" Height="48"
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="60"  Width="650" Margin="0 0 0 10">
+                    <TextBlock Text="Стоимость - " Margin="95 0 0 0" MaxWidth="150" FontSize="20"/>
+                    <TextBox Text="{Binding cost}" FontSize="14" MinWidth="110" MaxWidth="300"
+                             VerticalContentAlignment="Center" x:Name="CostBox" Padding="5" 
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                             PreviewTextInput="CostBox_PreviewTextInput"  Height="48"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="60"  Width="650" Margin="0 0 0 10">
+                    <TextBlock Text="Актальность - " Margin="80 0 0 0" MaxWidth="150" FontSize="20"/>
+                    <ComboBox MaxWidth="300" x:Name="ComboActual" FontSize="14" MinWidth="110"
+                              Height="48" Padding="5" VerticalContentAlignment="Center"
+                              SelectedIndex="{Binding isActual}" 
+                              Style="{StaticResource MaterialDesignOutlinedComboBox}">
+                        <ComboBoxItem >
+                            <TextBlock Text="Не актуален" />
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            <TextBlock Text="Актуален" />
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="60"  Width="650" Margin="0 0 0 10">
+                    <TextBlock Text="Путь к изображению - "   FontSize="20" />
+                    <TextBox Text="{Binding mainImagePath}" MinWidth="110" MaxWidth="185" 
+                             VerticalContentAlignment="Center" Padding="5"  x:Name="MainImage" 
+                             Style="{StaticResource MaterialDesignOutlinedTextBox}" MinHeight="48"
+                             MouseDoubleClick="MainImage_MouseDoubleClick" TextWrapping="Wrap"  
+                             VerticalAlignment="Center" FontSize="14"/>
+                </StackPanel>
+                <StackPanel Height="68" Width="650">
+                    <Button Height="48" Margin="10" VerticalAlignment="Center"  Content="Сохранить" 
+                            Width="480" x:Name="Save" HorizontalAlignment="Center" 
+                            Click="Save_Click" Foreground="#007cc2" BorderBrush="#007cc2"
+                            FontSize="20" 
+                            Style="{StaticResource MaterialDesignOutlinedButton}" />
+                </StackPanel>
+                <StackPanel Height="68">
+                    <Button x:Name="DeleteClick" VerticalAlignment="Center" Content="Удалить"
+                            Height="48" Margin="10"  Click="DeleteClick_Click"
+                            Foreground="Red" BorderBrush="Red" FontSize="20" Width="280"
+                            Style="{StaticResource MaterialDesignOutlinedButton}" 
+                            HorizontalAlignment="Center"/>
+                </StackPanel>
+            </WrapPanel>
+        </Grid>
+    </Grid>
+</Page>
